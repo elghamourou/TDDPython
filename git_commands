@@ -26,3 +26,6 @@ git remote add origin https://github.com/elghamourou/TDDPython
 git remote -v
 git push origin master
 #git push origin master --force
+
+
+git log --oneline
