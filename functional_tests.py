@@ -8,6 +8,8 @@ try:
     print(logs)
     assert 'Django' in browser.title
 finally:
+    #pass
     browser.close()
     browser.quit()
+
 
