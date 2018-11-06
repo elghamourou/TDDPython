@@ -1,31 +1,9 @@
-#my global token:056ad30fdfddba0d317628ab513f236593114a4f
+python manage.py runserver
 
+python manage.py makemigrations
 
-git init .
-git rm -r --cached superlists/__pychach__
+python manage.py migrate
 
+python manage.py test lists
 
-echo "db.sqlit3">>.gitignore
-
-git add .
-git status
-
-git add .gitignore
-
-git diff --staged
-
-git commit -m "initial commit"
-
-git config --global user.name "Salaheddine EL GHAMOUROU"
-git config --global user.email elghamourou@gmail.com
-git config --global credential.helper wincred
-git config --list
-
-
-git remote add origin https://github.com/elghamourou/TDDPython
-git remote -v
-git push origin master
-#git push origin master --force
-
-
-git log --oneline
+python manage.py migrate --noinput
