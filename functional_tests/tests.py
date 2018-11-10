@@ -1,7 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time
-from django.test import LiveServerTestCase
+from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium.common.exceptions import WebDriverException
 
 MAX_WAIT = 10
@@ -20,12 +20,13 @@ def waiting_decorator(fun):
 
     return wrapper
 
-class NewVisitorTest(LiveServerTestCase):
+class NewVisitorTest(StaticLiveServerTestCase):
     def setUp(self):
         path = "C:\\ProgramData\\Anaconda3-5.2.0\\BrowersDriver\\chromedriver.exe"
         self.browser = webdriver.Chrome(path)
 
     def tearDown(self):
+        self.browser.refresh()
         self.browser.quit()
 
     def wait_for_row_in_list_table(self, row_text):
@@ -102,6 +103,7 @@ class NewVisitorTest(LiveServerTestCase):
 
         ## we use a new browser session to ensure that no information
         ## of Edith's is comming through from cockies, etc...
+        self.browser.refresh()
         self.browser.quit()
         path = "C:\\ProgramData\\Anaconda3-5.2.0\\BrowersDriver\\chromedriver.exe"
         self.browser = webdriver.Chrome(path)
