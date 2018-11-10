@@ -29,3 +29,6 @@ git push origin master
 
 
 git log --oneline
+
+
+git reset --hard
