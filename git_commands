@@ -31,4 +31,4 @@ git push origin master
 git log --oneline
 
 
-git reset --hard
+git reset --hardgit config --global credential.helper osxkeychain
