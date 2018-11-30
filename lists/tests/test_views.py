@@ -72,21 +72,15 @@ class ListViewTest(TestCase):
         # the django test client just put it in the response for testing purposes
         self.assertEqual(response.context['list'], correct_list)
 
-    # def test_can_save_a_POST_request_to_an_existing_list(self):
-    #     other_list = List.objects.create()
-    #     correct_list = List.objects.create()
-    #     response = self.client.post(f'/lists/{correct_list.id}/add_item', data={'item_text': 'A new list item'})
-    #     self.assertEqual(Item.objects.count(), 1)
-    #     new_item = Item.objects.first()
-    #     self.assertEqual(new_item.text, 'A new list item')
-    #     self.assertEqual(new_item.list, correct_list)
+    def test_validation_errors_end_up_on_lists_page(self):
+        list_ = List.objects.create()
+        response = self.client.post(f'/lists/{list_.id}/', data={'item_text': ''})
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'list.html')
+        expected_error = escape("You can't have an empty list item")
+        self.assertContains(response, expected_error)
 
-    # def test_redirects_to_list_view_after_POST(self):
-    #     other_list = List.objects.create()
-    #     correct_list = List.objects.create()
-    #     response = self.client.post(f'/lists/{correct_list.id}/add_item', data={'item_text': 'A new list item',
-    #                                                                        'list_id':correct_list.id})
-    #     self.assertRedirects(response, f'/lists/{correct_list.id}/')
+
 
 
 class NewListTest(TestCase):
