@@ -13,9 +13,6 @@ class ItemValidationTest(FunctionalTest):
         self.browser.get(self.live_server_url)
         self.browser.find_element_by_id('id_new_item').send_keys(Keys.ENTER)
         # but the application didn't save the empty item
-        table = self.browser.find_element_by_id('id_list_table')
-        rows = table.find_elements_by_tag_name('tr')
-        self.assertNotIn("1: ", [row.text for row in rows])
         # and instead shows an error message informing her that an empty list item is not acceptable
 
         self.wait_for(lambda: self.assertEqual(self.browser.find_element_by_css_selector('.has-error').text,
