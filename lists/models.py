@@ -1,5 +1,6 @@
 from django.db import models
 
+
 # Create your models here.
 
 class List(models.Model):
@@ -8,8 +9,7 @@ class List(models.Model):
 
 class Item(models.Model):
     text = models.TextField(default='')
-    list = models.ForeignKey(List, default=None, on_delete=models.SET_DEFAULT)
-
+    list = models.ForeignKey(List, default=None, on_delete=models.CASCADE)
 
 # CASCADE: when you delete the UserProfile, all related Photos will be deleted too.
 # This is the default. (So in answer to that aspect of your question, yes,
